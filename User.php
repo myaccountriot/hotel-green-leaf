@@ -3,17 +3,15 @@ class User
 {
     private $conn;
    
-    private $table_name = "rooms";
+    private $table_name = "User";
    
 
     // object properties
-    public $roomn;
+    public $userid;
 
-    public $roomca;
+    public $name;
 
-    public $pr;
-
-    public $ava;
+    public $useraddress;
 
     public function __construct($db){
         $this->conn = $db;
@@ -22,7 +20,7 @@ class User
     public function search()
     {
         // select query
-        $query = "SELECT * from rooms";
+        $query = "SELECT * from User";
                 
         //echo "<br>" .$query;
         // prepare query statement
@@ -41,27 +39,20 @@ class User
                 
         $query = "insert into
                     " . $this->table_name . "
-                    (Roomno,Roomcat,Price,Availability)
+                    (User_name,User_address)
                 values (
-                    :roomn,
-                    :roomca,
-                    :pr,
-                    :ava;
+                    :name,
+                    :useraddress
                 )";
         $stmt = $this->conn->prepare($query);
         
         // posted values
-        $this->roomn=htmlspecialchars(strip_tags($this->roomn));
-        $this->roomca=htmlspecialchars(strip_tags($this->roomca));
-        $this->pr=htmlspecialchars(strip_tags($this->pr));
-        $this->ava=htmlspecialchars(strip_tags($this->ava));
+        $this->name=htmlspecialchars(strip_tags($this->name));
+        $this->useraddress=htmlspecialchars(strip_tags($this->useraddress));
         
         // bind parameters
-        $stmt->bindParam(":roomn", $this->roomn);
-        $stmt->bindParam(":roomca", $this->roomca);
-        $stmt->bindParam(":pr", $this->pr);
-        $stmt->bindParam(":ava", $this->ava);
-
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":useraddress", $this->useraddress);
 
         // execute the query
         if($stmt->execute()){
@@ -72,7 +63,7 @@ class User
     }
     function setorg(){
   
-        $query = "SELECT * FROM  " . $this->table_name . " WHERE Roomno = ? LIMIT 0,1";
+        $query = "SELECT * FROM  " . $this->table_name . " WHERE User_id = ? LIMIT 0,1";
       
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(1, $this->userid);
@@ -81,9 +72,8 @@ class User
       
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
       
-        $this->roomca = $row['Roomcat'];
-        $this->pr = $row['Price'];
-        $this->ava = $row['Availability'];
+        $this->name = $row['User_name'];
+        $this->useraddress = $row['User_address'];
 
     }
 
@@ -93,25 +83,22 @@ class User
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    Roomcat=:roomca,
-                    Price=:pr,
-                    Availability:=ava;
+                    User_name=:name,
+                    User_address=:useraddress
                 WHERE
-                    Roomno=:roomn";
+                    User_id=:userid";
         // echo $query;
         $stmt = $this->conn->prepare($query);
         
         // posted values
-        $this->roomn=htmlspecialchars(strip_tags($this->roomn));
-        $this->roomca=htmlspecialchars(strip_tags($this->roomca));
-        $this->pr=htmlspecialchars(strip_tags($this->pr));
-        $this->ava=htmlspecialchars(strip_tags($this->ava));
+        $this->userid=htmlspecialchars(strip_tags($this->userid));
+        $this->name=htmlspecialchars(strip_tags($this->name));
+        $this->useraddress=htmlspecialchars(strip_tags($this->useraddress));
         
         // bind parameters
-        $stmt->bindParam(":roomn", $this->roomn);
-        $stmt->bindParam(":roomca", $this->roomca);
-        $stmt->bindParam(":pr", $this->pr);
-        $stmt->bindParam(":ava", $this->ava);
+        $stmt->bindParam(":userid", $this->userid);
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":useraddress", $this->useraddress);
       
         // execute the query
         if($stmt->execute()){

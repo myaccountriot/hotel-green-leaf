@@ -20,55 +20,49 @@ echo "</br>";
 <!-- post code will be here -->
 <?php 
 // if the form was submitted
-if($_POST){
+if($_GET){
   
     // set user property values
 
-    $Userobj->roomn = $_POST['roomn'];
-    $Userobj->roomca = $_POST['roomca'];
-    $Userobj->pr = $_POST['pr'];
-    $Userobj->ava = $_POST['ava'];
+    $Userobj->userid = $_GET['userid'];
+    $Userobj->name = $_GET['name'];
+    $Userobj->useraddress = $_GET['useraddress'];
     
     
     // add user
     if($Userobj->create())
     {
         echo "<div class='alert alert-success alert-dismissable'>";
-            echo "ROOM IS ADDED";
+            echo "USER is Added";
         echo "</div>";
     }
   
     // if unable to update the user 
     else{
         echo "<div class='alert alert-danger alert-dismissable'>";
-            echo "ROOM NOT ADDED";
+            echo "USER not added";
         echo "</div>";
     }
 }
 ?>
 <!-- 'Update Student' form will be here -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] );?>" method="post">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] );?>" method="get">
     <table class='table table-hover table-responsive table-bordered'>
   
         <tr>
-            <td>ROOM NO</td>
-            <td><input type='text'  name='roomn'   
+            <td>USERID</td>
+            <td><input type='text' readonly name='userid'   
             class='form-control'  /></td>
         </tr>
         <tr>
-            <td>ROOM CATEGORY</td>
-            <td><input type='text' name='roomca'   
-            class='form-control'  /></td>
-        </tr>
-        <tr>
-            <td>PRICE</td>
-            <td><input type='text' name='pr'   
+            <td>USERNAME</td>
+            <td><input type='text' name='name'   
             class='form-control'  /></td>
         </tr>
         
         <tr>
-            <td>AVAILABILITY</td>
-            <td><input type='text' name='ava'   class='form-control' />
+            <td>ADDRESS</td>
+            <td><input type='text' name='useraddress'   class='form-control' />
             </td>
      
         </tr>        

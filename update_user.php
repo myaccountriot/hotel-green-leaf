@@ -10,9 +10,9 @@ $db=$database->getConnection();
 
 $Userobj=new User($db);
 
-$userid = isset($_GET['userid']) ? $_GET['roomn'] :die('ERROR'); 
+$userid = isset($_GET['userid']) ? $_GET['userid'] :die('ERROR'); 
 
-$Userobj->roomn=$roomn;
+$Userobj->userid=$userid;
 
 $Userobj->setorg();
 
@@ -31,10 +31,10 @@ if($_POST){
   
     // set user property values
 
-    $Userobj->roomn = $_POST['roomn'];
-    $Userobj->roomca = $_POST['roomca'];
-    $Userobj->pr = $_POST['pr'];
-    $Userobj->ava = $_POST['ava'];
+    $Userobj->userid = $_POST['userid'];
+    $Userobj->name = $_POST['name'];
+    $Userobj->useraddress = $_POST['useraddress'];
+    
     
     // update user
     if($Userobj->update())
@@ -53,28 +53,23 @@ if($_POST){
 }
 ?>
 <!-- 'Update Student' form will be here -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?roomn={$roomn}");?>"  method="post">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?userid={$userid}");?>"  method="post">
     <table class='table table-hover table-responsive table-bordered'>
   
         <tr>
-            <td>RROM NUMBER</td>
-            <td><input type='text'  name='roomn'  value='<?php echo $Userobj->roomn; ?>' 
+            <td>USERID</td>
+            <td><input type='text' readonly name='userid'  value='<?php echo $Userobj->userid; ?>' 
             class='form-control'  /></td>
         </tr>
         <tr>
-            <td>ROOM CATEGORY</td>
-            <td><input type='text' name='roomca'  value='<?php echo $Userobj->roomca; ?>' 
-            class='form-control'  /></td>
-        </tr>
-        <tr>
-            <td>PRICE</td>
-            <td><input type='text' name='pr'  value='<?php echo $Userobj->pr; ?>' 
+            <td>USERNAME</td>
+            <td><input type='text' name='name'  value='<?php echo $Userobj->name; ?>' 
             class='form-control'  /></td>
         </tr>
         
         <tr>
-            <td>AVAILABILITY</td>
-            <td><input type='text' name='ava'  value='<?php echo $Userobj->ava; ?>' class='form-control' />
+            <td>ADDRESS</td>
+            <td><input type='text' name='useraddress'  value='<?php echo $Userobj->useraddress; ?>' class='form-control' />
             </td>
      
         </tr>        

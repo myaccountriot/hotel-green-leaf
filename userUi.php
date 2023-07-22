@@ -20,21 +20,19 @@ if($total_rows>0){
 
     echo "<table class='table table-hover table-responsive table-bordered'>";
         echo "<tr>";
-            echo "<td>ROOM_NUMBER</th>";
-            echo "<th>ROOM_cATEGORY</th>";
-            echo "<th>PRICE</th>";
-            echo "<th>AVAILABILITY</th>";
+            echo "<td>USER_ID</th>";
+            echo "<th>USER_NAME</th>";
+            echo "<th>USER_ADDRESS</th>";
             echo "</tr>";
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
             echo "<tr>";
-            echo "<td>{$Roomno}</td>"; 
-            echo "<td>{$Roomcat}</td>";
-            echo "<td>{$Price}</td>";
-            echo "<td>{$Availability}</td>";
+            echo "<td>{$User_id}</td>"; 
+            echo "<td>{$User_name}</td>";
+            echo "<td>{$User_address}</td>";
             echo "<td>";
-                echo "<a href='update_user.php?roomn={$Roomno}' class='btn btn-primary'>
+                echo "<a href='update_user.php?userid={$User_id}' class='btn btn-primary'>
                     <i class='fa-solid fa-pen-to-square'></i> UPDATE </a>";
                 echo "&ensp;";
                 echo "<button class='btn btn-danger'>

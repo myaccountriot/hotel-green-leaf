@@ -4,7 +4,7 @@ class Database{
  
 
     private $host = "localhost";
-    private $db_name = "greenleaf";
+    private $db_name = "Hotel_Management";
     private $username = "root";
     private $password = "";
 

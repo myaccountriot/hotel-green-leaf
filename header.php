@@ -14,6 +14,6 @@
 <body background="back image.jpg">
     <div class="container" >
         <div class="row">
-         <h1>WELCOME TO ROOM TABLE !!</h1>  
+         <h1>WELCOME TO USER TABLE !!</h1>  
         </div>
         <br><br><br>
